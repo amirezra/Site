@@ -873,6 +873,103 @@ footer {
   box-shadow: 0 0 10px var(--accent-glow);
 }
 
+/* ── BOOT OVERLAY ────────────────────────────────── */
+#boot-overlay {
+  position: fixed; inset: 0; z-index: 10001;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.5s var(--ease-out), visibility 0.5s;
+}
+#boot-overlay.done { opacity: 0; visibility: hidden; pointer-events: none; }
+.boot-terminal {
+  font-family: var(--font-mono);
+  font-size: 0.78rem; letter-spacing: 0.08em;
+  color: var(--accent);
+  width: min(560px, 90vw);
+  min-height: 180px;
+}
+.boot-line { opacity: 0; white-space: nowrap; overflow: hidden; }
+.boot-line.on { opacity: 1; }
+.boot-line .dim { color: var(--text-dim); }
+.boot-line .ok { color: var(--accent); text-shadow: 0 0 8px var(--accent-glow); }
+.boot-caret {
+  display: inline-block; width: 8px; height: 14px;
+  background: var(--accent); vertical-align: -2px;
+  box-shadow: 0 0 8px var(--accent-glow);
+  animation: blink 0.8s step-end infinite;
+}
+.boot-bar {
+  margin-top: 18px; height: 2px; width: 100%;
+  background: rgba(0,255,136,0.08);
+  position: relative; overflow: hidden;
+}
+.boot-bar::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+  transform: scaleX(0); transform-origin: left;
+  animation: bootfill 1.4s var(--ease-circ) forwards;
+}
+@keyframes bootfill { to { transform: scaleX(1); } }
+
+/* ── DATA TICKER ─────────────────────────────────── */
+.ticker-strip {
+  position: relative;
+  border-top: 1px solid var(--border-accent);
+  border-bottom: 1px solid var(--border-accent);
+  background: var(--surface);
+  overflow: hidden;
+  padding: 12px 0;
+  z-index: 3;
+}
+.ticker-strip::before, .ticker-strip::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2;
+  pointer-events: none;
+}
+.ticker-strip::before { left: 0;  background: linear-gradient(90deg, var(--bg), transparent); }
+.ticker-strip::after  { right: 0; background: linear-gradient(270deg, var(--bg), transparent); }
+.ticker-inner {
+  display: flex; gap: 56px; width: max-content;
+  animation: ticker-scroll 38s linear infinite;
+}
+.ticker-inner span {
+  font-family: var(--font-mono);
+  font-size: 0.66rem; letter-spacing: 0.18em;
+  color: var(--text-dim); text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.ticker-inner span::before {
+  content: '▸'; color: var(--accent); font-size: 0.6rem;
+  text-shadow: 0 0 6px var(--accent-glow);
+}
+.ticker-inner b { color: var(--accent); font-weight: 400; }
+@keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── TELEMETRY RAIL ──────────────────────────────── */
+.telemetry-rail {
+  position: fixed; right: 18px; top: 50%; z-index: 150;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: flex-end; gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.55rem; letter-spacing: 0.2em;
+  color: rgba(0,255,136,0.35);
+  pointer-events: none;
+  text-transform: uppercase;
+}
+.telemetry-rail .t-line { display: flex; align-items: center; gap: 8px; }
+.telemetry-rail .t-line::after {
+  content: ''; width: 14px; height: 1px;
+  background: rgba(0,255,136,0.3);
+}
+.telemetry-rail .t-val { color: rgba(0,255,136,0.7); }
+@media (max-width: 1250px) { .telemetry-rail { display: none; } }
+
+/* ── DECODE HEADINGS ─────────────────────────────── */
+h2 span, h2 { --decode: 1; }
+
 /* ── FOCUS ───────────────────────────────────────── */
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
@@ -903,6 +1000,27 @@ footer {
 </style>
 </head>
 <body>
+
+<!-- Boot sequence overlay -->
+<div id="boot-overlay" aria-hidden="true">
+  <div class="boot-terminal" id="boot-terminal">
+    <div class="boot-line"><span class="dim">&gt;</span> INITIALIZING A.E//SEC KERNEL v4.2.1 <span class="ok">[OK]</span></div>
+    <div class="boot-line"><span class="dim">&gt;</span> LOADING THREAT INTELLIGENCE FEEDS <span class="ok">[OK]</span></div>
+    <div class="boot-line"><span class="dim">&gt;</span> ESTABLISHING ENCRYPTED CHANNEL · AES-256 <span class="ok">[OK]</span></div>
+    <div class="boot-line"><span class="dim">&gt;</span> PERIMETER STATUS: <span class="ok">SECURE</span></div>
+    <div class="boot-line"><span class="dim">&gt;</span> ACCESS GRANTED <span class="boot-caret"></span></div>
+    <div class="boot-bar"></div>
+  </div>
+</div>
+
+<!-- Telemetry HUD rail -->
+<div class="telemetry-rail" aria-hidden="true">
+  <div class="t-line">LAT <span class="t-val">32.0853N</span></div>
+  <div class="t-line">LON <span class="t-val">34.7818E</span></div>
+  <div class="t-line">UPLINK <span class="t-val" id="t-uplink">0000</span></div>
+  <div class="t-line">SCROLL <span class="t-val" id="t-scroll">000%</span></div>
+  <div class="t-line">ENC <span class="t-val">AES-256</span></div>
+</div>
 
 <!-- Custom cursor -->
 <div id="cursor-scan"></div>
@@ -1023,6 +1141,20 @@ footer {
     </div>
   </div>
 </section>
+
+<!-- ═══════════ DATA TICKER ═════════════════════ -->
+<div class="ticker-strip" aria-hidden="true">
+  <div class="ticker-inner" id="ticker-inner">
+    <span>THREAT FEED <b>LIVE</b></span>
+    <span>CVE MONITOR <b>ACTIVE</b></span>
+    <span>SOC UPTIME <b>99.99%</b></span>
+    <span>ZERO TRUST <b>ENFORCED</b></span>
+    <span>INTRUSIONS BLOCKED <b class="tick-blocked">14,203</b></span>
+    <span>ENCRYPTION <b>AES-256</b></span>
+    <span>RESPONSE SLA <b>&lt;15 MIN</b></span>
+    <span>PERIMETER <b>SECURE</b></span>
+  </div>
+</div>
 
 <!-- ═══════════ CAROUSEL ════════════════════════ -->
 <section class="carousel-section" aria-label="Threat intelligence showcase">
@@ -1229,10 +1361,10 @@ footer {
   </div>
 
   <div class="c-grid reveal reveal-delay-1" role="list">
-    <a href="mailto:contact@amirezra.com" class="c-card" role="listitem">
+    <a href="/cdn-cgi/l/email-protection#71121e1f0510120531101c1803140b03105f121e1c" class="c-card" role="listitem">
       <svg class="c-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       <div class="c-lbl">Email</div>
-      <div class="c-val">contact@amirezra.com</div>
+      <div class="c-val"><span class="__cf_email__" data-cfemail="2a4945445e4b495e6a4b4743584f50584b04494547">[email&#160;protected]</span></div>
     </a>
     <a href="tel:+972507417680" class="c-card" role="listitem">
       <svg class="c-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" transform="translate(1 1)"/></svg>
@@ -1265,7 +1397,93 @@ footer {
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ═══════════════════════════════════════════════════
+   BOOT SEQUENCE
+═══════════════════════════════════════════════════ */
+(() => {
+  const overlay = document.getElementById('boot-overlay');
+  const lines = overlay.querySelectorAll('.boot-line');
+  lines.forEach((l, i) => setTimeout(() => l.classList.add('on'), 180 + i * 220));
+  setTimeout(() => overlay.classList.add('done'), 1700);
+  overlay.addEventListener('click', () => overlay.classList.add('done'));
+})();
+
+/* ═══════════════════════════════════════════════════
+   TEXT DECODE / SCRAMBLE ON HEADINGS
+═══════════════════════════════════════════════════ */
+(() => {
+  const CHARS = '!<>-_\\/[]{}—=+*^?#01';
+  function scramble(el) {
+    const original = el.dataset.decodeText;
+    let frame = 0;
+    const total = original.length * 3 + 10;
+    const timer = setInterval(() => {
+      frame++;
+      let out = '';
+      for (let i = 0; i < original.length; i++) {
+        if (original[i] === ' ') { out += ' '; continue; }
+        if (frame / 3 > i) out += original[i];
+        else out += CHARS[Math.floor(Math.random() * CHARS.length)];
+      }
+      el.textContent = out;
+      if (frame >= total) { el.textContent = original; clearInterval(timer); }
+    }, 28);
+  }
+  // Collect text nodes inside h2s (skip nested structure by targeting leaf spans + text)
+  const targets = [];
+  document.querySelectorAll('.section-header h2, .about h2').forEach(h2 => {
+    h2.childNodes.forEach(node => {
+      if (node.nodeType === 3 && node.textContent.trim()) {
+        const span = document.createElement('span');
+        span.textContent = node.textContent;
+        h2.replaceChild(span, node);
+        targets.push(span);
+      } else if (node.nodeType === 1 && node.classList && node.classList.contains('line-accent')) {
+        targets.push(node);
+      }
+    });
+  });
+  const decodeObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        scramble(entry.target);
+        decodeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  targets.forEach(t => {
+    t.dataset.decodeText = t.textContent;
+    decodeObserver.observe(t);
+  });
+})();
+
+/* ═══════════════════════════════════════════════════
+   TELEMETRY RAIL + TICKER COUNTERS
+═══════════════════════════════════════════════════ */
+(() => {
+  const uplink = document.getElementById('t-uplink');
+  const scrollEl = document.getElementById('t-scroll');
+  setInterval(() => {
+    uplink.textContent = String(Math.floor(Math.random() * 9000) + 1000);
+  }, 900);
+  window.addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? Math.round(window.scrollY / max * 100) : 0;
+    scrollEl.textContent = String(pct).padStart(3, '0') + '%';
+  }, { passive: true });
+
+  // duplicate ticker content for seamless loop
+  const ticker = document.getElementById('ticker-inner');
+  ticker.innerHTML += ticker.innerHTML;
+  const blocked = document.querySelectorAll('.tick-blocked');
+  let count = 14203;
+  setInterval(() => {
+    count += Math.floor(Math.random() * 3) + 1;
+    blocked.forEach(b => b.textContent = count.toLocaleString());
+  }, 2600);
+})();
+
 /* ═══════════════════════════════════════════════════
    CUSTOM CURSOR — HACKER BRACKET [ + ]
 ═══════════════════════════════════════════════════ */
