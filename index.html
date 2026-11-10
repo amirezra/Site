@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>A.E Consulting — Cybersecurity & IT Services</title>
+<meta name="description" content="A.E Consulting delivers enterprise-grade cybersecurity and IT solutions for businesses that cannot afford to be vulnerable.">
+<meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   TOKENS — light / dark, Apple-style neutrals + brand green
+═══════════════════════════════════════════════════════════════ */
+:root {
+  color-scheme: light dark;
+  --bg:        #fbfbfd;
+  --bg-2:      #f5f5f7;
+  --surface:   #ffffff;
+  --text:      #1d1d1f;
+  --text-2:    #6e6e73;
+  --text-3:    #86868b;
+  --hairline:  rgba(0,0,0,0.08);
+  --accent:    #0a9d58;
+  --accent-2:  #0071e3;
+  --accent-ink:#ffffff;
+  --accent-soft: rgba(10,157,88,0.10);
+  --glass:     rgba(251,251,253,0.72);
+  --glass-edge:rgba(255,255,255,0.65);
+  --scrim:     rgba(0,0,0,0.22);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.05);
+  --shadow-lg: 0 2px 8px rgba(0,0,0,0.05), 0 30px 70px rgba(0,0,0,0.12);
+  --tile-a:    #eafff3;
+  --tile-b:    #d6f5e6;
+
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --radius:    22px;
+  --radius-lg: 32px;
+  --nav-h:     52px;
+  --gutter:    clamp(16px, 5vw, 72px);
+  --ease:      cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:        #000000;
+    --bg-2:      #0d0d0f;
+    --surface:   #1c1c1e;
+    --text:      #f5f5f7;
+    --text-2:    #a1a1a6;
+    --text-3:    #86868b;
+    --hairline:  rgba(255,255,255,0.10);
+    --accent:    #30d158;
+    --accent-2:  #2997ff;
+    --accent-ink:#00140a;
+    --accent-soft: rgba(48,209,88,0.14);
+    --glass:     rgba(22,22,24,0.72);
+    --glass-edge:rgba(255,255,255,0.08);
+    --scrim:     rgba(0,0,0,0.5);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.4), 0 6px 20px rgba(0,0,0,0.3);
+    --shadow-lg: 0 2px 8px rgba(0,0,0,0.5), 0 30px 70px rgba(0,0,0,0.6);
+    --tile-a:    #0f2a1b;
+    --tile-b:    #06140d;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#000000; --bg-2:#0d0d0f; --surface:#1c1c1e; --text:#f5f5f7; --text-2:#a1a1a6; --text-3:#86868b;
+  --hairline:rgba(255,255,255,0.10); --accent:#30d158; --accent-2:#2997ff; --accent-ink:#00140a;
+  --accent-soft:rgba(48,209,88,0.14); --glass:rgba(22,22,24,0.72); --glass-edge:rgba(255,255,255,0.08);
+  --scrim:rgba(0,0,0,0.5); --shadow-sm:0 1px 2px rgba(0,0,0,0.4),0 6px 20px rgba(0,0,0,0.3);
+  --shadow-lg:0 2px 8px rgba(0,0,0,0.5),0 30px 70px rgba(0,0,0,0.6); --tile-a:#0f2a1b; --tile-b:#06140d;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BASE + TYPOGRAPHY (size-specific tracking & leading)
+═══════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 400 1.0625rem/1.55 var(--font);
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+svg { display: block; }
+:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 3px; border-radius: 8px; }
+
+.eyebrow {
+  font-size: 0.8125rem; font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+h1, h2, h3 { font-weight: 700; color: var(--text); }
+h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+h2 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+h3 { font-size: 1.3125rem; line-height: 1.2; letter-spacing: -0.02em; }
+.lede {
+  font-size: clamp(1.125rem, 1.6vw, 1.3125rem);
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--text-2);
+  max-width: 34em;
+}
+.grad {
+  background: linear-gradient(100deg, var(--accent) 10%, var(--accent-2) 90%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+}
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 var(--gutter); }
+section { padding: clamp(80px, 12vw, 140px) 0; }
+.section-head { margin-bottom: clamp(36px, 5vw, 56px); }
+.section-head .lede { margin-top: 14px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   PRESS FEEDBACK — on pointer-down, instant
+═══════════════════════════════════════════════════════════════ */
+.press { transition: scale 120ms ease-out, background-color 200ms, color 200ms; }
+.press:active { scale: 0.97; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: 44px; padding: 0 22px;
+  border-radius: 980px;
+  font-size: 1.0625rem; font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { filter: brightness(1.06); }
+.btn-link { color: var(--accent-2); padding: 0 6px; }
+.btn-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV — translucent material, scroll-edge hairline
+═══════════════════════════════════════════════════════════════ */
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 100;
+  height: var(--nav-h);
+  background: var(--glass);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.nav::after {
+  content: ''; position: absolute; inset: auto 0 0 0; height: 1px;
+  background: var(--hairline);
+  opacity: 0; transition: opacity 200ms;
+}
+.nav.edge::after { opacity: 1; }
+.nav .wrap { height: 100%; display: flex; align-items: center; gap: 28px; }
+.logo {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 600; font-size: 1.0625rem; letter-spacing: -0.02em;
+  margin-right: auto;
+}
+.logo svg { color: var(--accent); }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  font-size: 0.875rem; color: var(--text-2);
+  transition: color 200ms;
+}
+.nav-links a:hover, .nav-links a[aria-current="true"] { color: var(--text); }
+.nav .btn { min-height: 32px; padding: 0 14px; font-size: 0.875rem; }
+
+.burger {
+  display: none;
+  width: 44px; height: 44px; margin-right: -10px;
+  position: relative;
+}
+.burger span {
+  position: absolute; left: 13px; top: 21px;
+  width: 18px; height: 1.5px; border-radius: 1px;
+  background: var(--text);
+  will-change: transform;
+}
+
+/* Mobile sheet — slides down from under the nav, leaves the same way */
+.sheet {
+  position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 90;
+  background: var(--glass);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  backdrop-filter: saturate(180%) blur(24px);
+  border-radius: 0 0 var(--radius) var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 8px var(--gutter) 10px;
+  touch-action: none;
+  visibility: hidden;
+  will-change: transform;
+}
+.sheet ul { list-style: none; }
+.sheet a {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 0;
+  font-size: 1.5rem; font-weight: 600; letter-spacing: -0.025em;
+  border-bottom: 1px solid var(--hairline);
+}
+.sheet li:last-child a { border-bottom: 0; }
+.sheet a small { font-size: 0.9375rem; font-weight: 400; color: var(--text-2); letter-spacing: -0.01em; }
+.sheet-grip {
+  width: 36px; height: 5px; border-radius: 3px;
+  background: var(--text-3); opacity: 0.4;
+  margin: 10px auto 2px;
+}
+.scrim {
+  position: fixed; inset: 0; z-index: 80;
+  background: var(--scrim);
+  opacity: 0; pointer-events: none;
+}
+.scrim.live { pointer-events: auto; }
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════════════ */
+.hero {
+  padding-top: calc(var(--nav-h) + clamp(56px, 10vw, 120px));
+  padding-bottom: clamp(64px, 9vw, 110px);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: -20% -10% auto auto;
+  width: 70vw; height: 70vw; max-width: 900px; max-height: 900px;
+  background: radial-gradient(closest-side, var(--accent-soft), transparent);
+  pointer-events: none;
+}
+.hero .wrap {
+  display: grid; grid-template-columns: 1.15fr 0.85fr;
+  align-items: center; gap: clamp(32px, 6vw, 80px);
+  position: relative;
+}
+.hero h1 { margin-bottom: 24px; }
+.hero h1 span { display: block; }
+.hero .lede { margin-bottom: 36px; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+
+.tile-stage { display: grid; place-items: center; }
+.tile {
+  width: clamp(220px, 26vw, 300px); aspect-ratio: 1;
+  border-radius: 26%;
+  background: linear-gradient(160deg, var(--tile-a), var(--tile-b));
+  box-shadow: var(--shadow-lg), inset 0 1px 0 var(--glass-edge);
+  display: grid; place-items: center;
+  color: var(--accent);
+  cursor: grab;
+  touch-action: none;
+  user-select: none; -webkit-user-select: none;
+  will-change: transform;
+}
+.tile.held { cursor: grabbing; }
+.tile svg { width: 46%; height: auto; overflow: visible; }
+.tile-hint {
+  margin-top: 22px; font-size: 0.8125rem; color: var(--text-3);
+}
+
+/* Facts strip — static, replaces the perpetual ticker */
+.facts { border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); padding: 0; }
+.facts ul {
+  list-style: none;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.facts li { padding: 26px 0; text-align: center; }
+.facts li + li { border-left: 1px solid var(--hairline); }
+.facts b { display: block; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.025em; }
+.facts span { font-size: 0.8125rem; color: var(--text-2); }
+
+/* ═══════════════════════════════════════════════════════════════
+   CAROUSEL — 1:1 drag, momentum, rubber-band, springs
+═══════════════════════════════════════════════════════════════ */
+.intel { background: var(--bg-2); }
+.cv { position: relative; }
+.cv-viewport {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none; -webkit-user-select: none;
+}
+.cv-viewport.dragging { cursor: grabbing; }
+.cv-track { display: flex; gap: 16px; will-change: transform; }
+.slide {
+  flex: 0 0 100%;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  padding: clamp(28px, 5vw, 64px);
+  display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(24px, 5vw, 64px);
+  align-items: center;
+  position: relative; overflow: hidden;
+}
+.slide::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(80% 100% at 0% 0%, hsl(var(--hue) 90% 55% / 0.10), transparent 60%);
+  pointer-events: none;
+}
+.slide > * { position: relative; }
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em;
+  color: hsl(var(--hue) 75% 42%);
+  background: hsl(var(--hue) 80% 50% / 0.12);
+  padding: 5px 11px; border-radius: 980px;
+  margin-bottom: 18px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tag { color: hsl(var(--hue) 85% 65%); } }
+:root[data-theme="dark"] .tag { color: hsl(var(--hue) 85% 65%); }
+.tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.slide h3 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05; letter-spacing: -0.03em; }
+.slide p { color: var(--text-2); margin-bottom: 28px; }
+.slide-stats { display: flex; gap: 40px; flex-wrap: wrap; }
+.slide-stats b { display: block; font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+.slide-stats span { font-size: 0.8125rem; color: var(--text-2); }
+
+.cv-controls {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 24px;
+}
+.dots { position: relative; display: flex; }
+.dot { width: 18px; height: 24px; position: relative; }
+.dot::after {
+  content: ''; position: absolute; left: 5px; top: 8px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--text-3); opacity: 0.35;
+}
+.dot-pill {
+  position: absolute; left: 5px; top: 8px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--text);
+  pointer-events: none; will-change: transform;
+}
+.cv-count { font-size: 0.875rem; color: var(--text-2); font-variant-numeric: tabular-nums; }
+.arrows { display: flex; gap: 12px; }
+.arrow {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  display: grid; place-items: center;
+  color: var(--text);
+}
+.arrow:disabled { opacity: 0.35; cursor: default; }
+
+/* ═══════════════════════════════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════════════════════════════ */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 32px 28px 34px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--hairline);
+  position: relative; overflow: hidden;
+  will-change: translate;
+}
+.card::before {
+  /* light that follows the pointer */
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 0%), var(--accent-soft), transparent 70%);
+  opacity: 0; transition: opacity 300ms;
+}
+.card:hover::before { opacity: 1; }
+.card > * { position: relative; }
+.card-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--accent-soft); color: var(--accent);
+  display: grid; place-items: center;
+  margin-bottom: 22px;
+}
+.card h3 { margin-bottom: 10px; }
+.card p { font-size: 0.9688rem; color: var(--text-2); line-height: 1.55; }
+
+/* ═══════════════════════════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════════════════════════ */
+.about { background: var(--bg-2); }
+.about .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(40px, 7vw, 96px); align-items: center; }
+.about p { color: var(--text-2); margin-bottom: 18px; max-width: 36em; }
+.about .btn-link { padding: 0; margin-top: 6px; display: inline-flex; min-height: 44px; align-items: center; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.stat {
+  background: var(--surface); border-radius: var(--radius);
+  padding: 28px 24px; box-shadow: var(--shadow-sm);
+}
+.stat b { display: block; font-size: clamp(2.25rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
+.stat span { font-size: 0.875rem; color: var(--text-2); }
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════════════════════ */
+.contact { text-align: center; }
+.contact .lede { margin: 14px auto 0; }
+.contact .grid-3 { margin: 48px 0 40px; text-align: left; }
+.c-card {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--surface); border-radius: var(--radius);
+  border: 1px solid var(--hairline);
+  padding: 22px; box-shadow: var(--shadow-sm);
+}
+.c-card .card-icon { margin: 0; flex: none; }
+.c-card small { display: block; font-size: 0.8125rem; color: var(--text-2); }
+.c-card strong { font-weight: 600; letter-spacing: -0.015em; word-break: break-word; }
+.c-card .chev { margin-left: auto; color: var(--text-3); flex: none; }
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════════ */
+footer { border-top: 1px solid var(--hairline); padding: 28px 0 calc(28px + env(safe-area-inset-bottom)); font-size: 0.8125rem; color: var(--text-2); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; }
+footer .links { display: flex; gap: 22px; margin-left: auto; }
+footer a:hover { color: var(--text); }
+
+/* ═══════════════════════════════════════════════════════════════
+   REVEAL — opacity + short rise (not gesture-driven, so CSS is fine)
+═══════════════════════════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); transition-delay: calc(var(--i, 0) * 80ms); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  .nav-links, .nav .btn { display: none; }
+  .burger { display: block; }
+  .hero .wrap { grid-template-columns: 1fr; }
+  .tile-stage { order: -1; justify-items: start; }
+  .tile { width: 132px; }
+  .tile-hint { display: none; }
+  .slide { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+  .about .wrap { grid-template-columns: 1fr; }
+  .facts ul { grid-template-columns: 1fr 1fr; }
+  .facts li:nth-child(3) { border-left: 0; }
+  .facts li:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+}
+@media (max-width: 600px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .arrows { display: none; }
+  footer .links { margin-left: 0; }
+}
+@media (min-width: 961px) { .sheet, .scrim { display: none; } }
+
+/* ═══════════════════════════════════════════════════════════════
+   ACCESSIBILITY PREFERENCES
+═══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transform: none; transition: opacity 0.4s ease; }
+  .press:active { scale: 1; opacity: 0.7; }
+  .card::before { transition: none; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .nav, .sheet { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@media (prefers-contrast: more) {
+  :root { --hairline: rgba(0,0,0,0.4); --text-2: #3a3a3c; }
+  .nav, .sheet { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom: 1px solid var(--text); }
+  .card, .stat, .slide, .c-card { border: 1px solid var(--text); }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAV ═══════════ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="A.E Consulting home">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      A.E Consulting
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#intelligence">Intelligence</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary press" href="https://wa.me/972507417680" target="_blank" rel="noopener">Book a diagnostic</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="sheet" id="sheet" aria-label="Mobile" inert>
+  <ul>
+    <li><a href="#intelligence" class="press">Intelligence</a></li>
+    <li><a href="#services" class="press">Services</a></li>
+    <li><a href="#about" class="press">About</a></li>
+    <li><a href="#contact" class="press">Contact</a></li>
+    <li><a href="tel:+972507417680" class="press">Call <small>+972 50 741 7680</small></a></li>
+  </ul>
+  <div class="sheet-grip" aria-hidden="true"></div>
+</nav>
+
+<main id="top">
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" aria-label="Introduction">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow reveal">Cybersecurity &amp; IT Services · Israel</p>
+      <h1 class="reveal" style="--i:1">
+        <span>Defend.</span>
+        <span>Detect.</span>
+        <span class="grad">Dominate.</span>
+      </h1>
+      <p class="lede reveal" style="--i:2">
+        Precision-engineered cybersecurity and IT solutions, from network fortification to cloud architecture. Built for businesses that cannot afford to be vulnerable.
+      </p>
+      <div class="hero-actions reveal" style="--i:3">
+        <a href="https://wa.me/972507417680" class="btn btn-primary press" target="_blank" rel="noopener">Schedule a diagnostic</a>
+        <a href="tel:+972507417680" class="btn btn-link press">+972 50 741 7680 ›</a>
+      </div>
+    </div>
+
+    <div class="tile-stage reveal" style="--i:2" aria-hidden="true">
+      <div class="tile" id="tile">
+        <svg viewBox="0 0 100 110" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+          <path id="shackle" d="M28 50 V34 a22 22 0 0 1 44 0 V50"/>
+          <rect x="14" y="50" width="72" height="56" rx="14" fill="currentColor" fill-opacity="0.12"/>
+          <circle cx="50" cy="74" r="6"/>
+          <path d="M50 80 v10"/>
+        </svg>
+      </div>
+      <p class="tile-hint">Go on, give it a throw.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FACTS ═══════════ -->
+<section class="facts" aria-label="Key facts">
+  <div class="wrap">
+    <ul>
+      <li><b>99.99%</b><span>SOC uptime</span></li>
+      <li><b>&lt;15 min</b><span>Response SLA</span></li>
+      <li><b>Zero Trust</b><span>Enforced by default</span></li>
+      <li><b>AES-256</b><span>Encryption</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════ INTELLIGENCE CAROUSEL ═══════════ -->
+<section class="intel" id="intelligence" aria-label="Threat landscape">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Intelligence</p>
+      <h2>Threat landscape awareness.</h2>
+      <p class="lede">Real-world domains where A.E Consulting operates to keep your infrastructure ahead of the curve.</p>
+    </div>
+
+    <div class="cv reveal" style="--i:1" aria-roledescription="carousel" aria-label="Threat domains">
+      <div class="cv-viewport" id="cv-viewport" tabindex="0" aria-label="Threat domains, use arrow keys to move between slides">
+        <div class="cv-track" id="cv-track">
+
+          <article class="slide" style="--hue:200" aria-roledescription="slide" aria-label="1 of 4">
+            <div><span class="tag">Active threat</span><h3>Zero-day exploitation</h3></div>
+            <div>
+              <p>Adversaries leverage unpatched CVEs within hours of disclosure. Our continuous vulnerability intelligence pipeline hardens your attack surface before exploits reach the wild. Patch management, virtual patching and compensating controls, layered.</p>
+              <div class="slide-stats">
+                <div><b>97%</b><span>Of breaches exploit known vulns</span></div>
+                <div><b>&lt;24h</b><span>Mean patch validation window</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="slide" style="--hue:355" aria-roledescription="slide" aria-label="2 of 4">
+            <div><span class="tag">Critical risk</span><h3>Ransomware defense</h3></div>
+            <div>
+              <p>Modern ransomware operators move from initial access to encryption in under 4 hours. Effective defense demands rapid detection, network segmentation, immutable backups and a tested IR playbook, not just endpoint AV.</p>
+              <div class="slide-stats">
+                <div><b>4.5M</b><span>Average ransom payment, 2024</span></div>
+                <div><b>72h</b><span>Breach-to-recovery target</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="slide" style="--hue:30" aria-roledescription="slide" aria-label="3 of 4">
+            <div><span class="tag">Insider threat</span><h3>Identity &amp; access risk</h3></div>
+            <div>
+              <p>Compromised credentials and privilege abuse remain the top initial access vectors. Zero Trust architecture, PAM enforcement, MFA everywhere and behavioral analytics form the backbone of modern identity security.</p>
+              <div class="slide-stats">
+                <div><b>61%</b><span>Of incidents involve stolen creds</span></div>
+                <div><b>Zero</b><span>Trust: verify every access</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="slide" style="--hue:265" aria-roledescription="slide" aria-label="4 of 4">
+            <div><span class="tag">Cloud posture</span><h3>Cloud misconfiguration</h3></div>
+            <div>
+              <p>Misconfigured S3 buckets, open security groups and over-privileged IAM roles continue to expose critical data. CSPM, continuous compliance scanning and IaC security gates close these gaps at the source.</p>
+              <div class="slide-stats">
+                <div><b>82%</b><span>Cloud breaches from misconfig</span></div>
+                <div><b>CIS</b><span>Benchmarks enforced by default</span></div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="cv-controls">
+        <div class="dots" id="dots" role="group" aria-label="Choose slide"><span class="dot-pill" id="dot-pill"></span></div>
+        <span class="cv-count" id="cv-count" aria-live="polite">1 of 4</span>
+        <div class="arrows">
+          <button class="arrow press" id="cv-prev" aria-label="Previous slide">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="arrow press" id="cv-next" aria-label="Next slide">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section id="services" aria-label="Services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Capabilities</p>
+      <h2>What we secure.</h2>
+      <p class="lede">Six domains of expertise, one mission: eliminate your organization's exposure surface.</p>
+    </div>
+    <div class="grid-3 reveal" style="--i:1">
+      <div class="card">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Security Architecture</h3>
+        <p>Zero Trust network design, cloud security posture management and secure-by-default infrastructure patterns for AWS and Azure environments.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+        <h3>Penetration Testing</h3>
+        <p>Full-scope red team engagements: external perimeter, internal network, web applications and social engineering. MITRE ATT&amp;CK-aligned reporting.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3>SOC &amp; SIEM</h3>
+        <p>Splunk Enterprise Security deployment, detection engineering, RBA architecture and 24/7 monitoring. Detection coverage mapped to the ATT&amp;CK kill chain.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+        <h3>Cloud Security</h3>
+        <p>AWS &amp; Azure hardening, IAM least-privilege auditing, CIS Benchmark enforcement, GuardDuty/Defender deployment and continuous CSPM configuration.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 11 17 15 13"/></svg></div>
+        <h3>GRC &amp; Compliance</h3>
+        <p>ISO 27001, PCI-DSS and SOC 2 readiness assessments. Gap analysis, policy frameworks and audit-ready documentation packages.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3>Incident Response</h3>
+        <p>Rapid breach containment, forensic investigation and recovery orchestration. From initial triage to root cause analysis and post-incident hardening.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="about" id="about" aria-label="About">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">About</p>
+      <h2 style="margin-bottom:24px">20 years securing the edge.</h2>
+      <p>A.E Consulting was built by Amir Ezra: cybersecurity professional, Deputy CISO at TASE, and hands-on infrastructure architect with 20+ years across the full stack of enterprise security and cloud operations.</p>
+      <p>The practice spans cloud security (AWS/Azure), Splunk ES/SOC operations, GRC compliance (PCI-DSS, ISO 27001), penetration testing and critical infrastructure protection. Every engagement is led personally. No hand-offs, no junior substitutes.</p>
+      <a href="https://linkedin.com/in/amir-ezra-cyber/" class="btn-link press" target="_blank" rel="noopener">View LinkedIn profile ›</a>
+    </div>
+    <div class="stats reveal" style="--i:1">
+      <div class="stat"><b>20+</b><span>Years of experience</span></div>
+      <div class="stat"><b>200+</b><span>Engagements delivered</span></div>
+      <div class="stat"><b class="grad">0</b><span>Successful breaches on watch</span></div>
+      <div class="stat"><b>24/7</b><span>Response availability</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section class="contact" id="contact" aria-label="Contact">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Contact</p>
+      <h2>Get in touch.</h2>
+      <p class="lede">Ready to harden your infrastructure? Let's talk threat landscape before your adversaries do.</p>
+    </div>
+    <div class="grid-3 reveal" style="--i:1">
+      <a href="mailto:contact@amirezra.com" class="c-card press">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div><small>Email</small><strong>contact@amirezra.com</strong></div>
+        <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="tel:+972507417680" class="c-card press">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div><small>Phone</small><strong>+972 50 741 7680</strong></div>
+        <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/amir-ezra-cyber/" class="c-card press" target="_blank" rel="noopener">
+        <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="11" x2="8" y2="17"/><line x1="8" y1="7" x2="8" y2="7.01"/><path d="M12 17v-6M12 13.5q0-2.5 2.5-2.5t2.5 2.5V17"/></svg></div>
+        <div><small>LinkedIn</small><strong>amir-ezra-cyber</strong></div>
+        <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+    <a href="https://wa.me/972507417680" class="btn btn-primary press reveal" style="--i:2" target="_blank" rel="noopener">Schedule a diagnostic</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> A.E Consulting · Israel. All rights reserved.</span>
+    <div class="links">
+      <a href="tel:+972507417680">Phone</a>
+      <a href="https://linkedin.com/in/amir-ezra-cyber/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://wa.me/972507417680" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+'use strict';
+
+/* ═══════════════════════════════════════════════════════════════
+   SPRING ENGINE
+   Apple-style parameters: damping ratio (1 = no overshoot) and
+   response (seconds, not a duration). Always animates from the
+   current value and keeps velocity, so it can be interrupted and
+   re-targeted at any instant.
+═══════════════════════════════════════════════════════════════ */
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const active = new Set();
+let raf = 0, lastT = 0;
+
+function tick(now) {
+  const dt = Math.min(0.064, Math.max(0.001, (now - lastT) / 1000));
+  lastT = now;
+  for (const s of [...active]) s._step(dt);
+  raf = active.size ? requestAnimationFrame(tick) : 0;
+}
+function wake(s) {
+  active.add(s);
+  if (!raf) { lastT = performance.now(); raf = requestAnimationFrame(tick); }
+}
+
+class Spring {
+  constructor(value, onUpdate, { damping = 1, response = 0.4, eps = 0.05 } = {}) {
+    Object.assign(this, { value, target: value, velocity: 0, damping, response, eps, onUpdate, onRest: null });
+    onUpdate(value);
+  }
+  to(target, opts = {}) {
+    this.target = target;
+    if (opts.velocity !== undefined) this.velocity = opts.velocity;
+    if (opts.damping  !== undefined) this.damping  = opts.damping;
+    if (opts.response !== undefined) this.response = opts.response;
+    if (reduceMotion.matches) return this.jump(target, true);
+    wake(this);
+  }
+  jump(v, rest = false) {          // follow the finger 1:1
+    this.value = this.target = v; this.velocity = 0;
+    active.delete(this);
+    this.onUpdate(v);
+    if (rest && this.onRest) this.onRest();
+  }
+  stop() { active.delete(this); }  // catch it mid-flight, velocity kept
+  get moving() { return active.has(this); }
+  _step(dt) {
+    const w = 2 * Math.PI / this.response, k = w * w, c = 2 * this.damping * w;
+    const n = Math.ceil(dt * 240), h = dt / n;
+    for (let i = 0; i < n; i++) {
+      this.velocity += (-k * (this.value - this.target) - c * this.velocity) * h;
+      this.value += this.velocity * h;
+    }
+    if (Math.abs(this.velocity) < this.eps * 10 && Math.abs(this.value - this.target) < this.eps) {
+      this.value = this.target; this.velocity = 0; active.delete(this);
+      this.onUpdate(this.value);
+      if (this.onRest) this.onRest();
+      return;
+    }
+    this.onUpdate(this.value);
+  }
+}
+
+/* Momentum projection (Designing Fluid Interfaces, WWDC 2018) */
+const project = (v, d = 0.998) => (v / 1000) * d / (1 - d);
+/* Progressive resistance past a boundary */
+const rubberband = (x, dim, c = 0.55) => (x * dim * c) / (dim + c * Math.abs(x));
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+/* Velocity from the last ~100ms of pointer history */
+function velocityTracker() {
+  let pts = [];
+  return {
+    reset() { pts = []; },
+    add(x, y, t) {
+      pts.push({ x, y, t });
+      while (pts.length > 2 && t - pts[0].t > 100) pts.shift();
+    },
+    get(now) {
+      if (pts.length < 2) return { x: 0, y: 0 };
+      const a = pts[0], b = pts[pts.length - 1];
+      if (now - b.t > 80) return { x: 0, y: 0 };   // finger paused before lifting
+      const dt = (b.t - a.t) / 1000;
+      return dt > 0 ? { x: (b.x - a.x) / dt, y: (b.y - a.y) / dt } : { x: 0, y: 0 };
+    }
+  };
+}
+
+/* iOS: make :active fire on touch-down */
+document.addEventListener('touchstart', () => {}, { passive: true });
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV — scroll-edge hairline + wayfinding
+═══════════════════════════════════════════════════════════════ */
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('edge', window.scrollY > 4);
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+const navLinks = [...document.querySelectorAll('.nav-links a')];
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    navLinks.forEach(a => a.setAttribute('aria-current', a.hash === '#' + e.target.id ? 'true' : 'false'));
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+document.querySelectorAll('main section[id]').forEach(s => spy.observe(s));
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE SHEET — spring, interruptible, drag-to-dismiss
+═══════════════════════════════════════════════════════════════ */
+(() => {
+  const sheet = document.getElementById('sheet');
+  const scrim = document.getElementById('scrim');
+  const burger = document.getElementById('burger');
+  const [l1, l2] = burger.querySelectorAll('span');
+  let closedY = -(sheet.offsetHeight + 60);
+  let isOpen = false;
+
+  const sp = new Spring(closedY, y => {
+    sheet.style.transform = `translate3d(0,${y}px,0)`;
+    const p = clamp(1 - y / closedY, 0, 1.1);
+    scrim.style.opacity = clamp(p, 0, 1);
+    // hamburger morphs continuously with the sheet, not at the end
+    l1.style.transform = `translateY(${-3.5 + 3.5 * p}px) rotate(${45 * p}deg)`;
+    l2.style.transform = `translateY(${3.5 - 3.5 * p}px) rotate(${-45 * p}deg)`;
+  }, { eps: 0.5 });
+
+  sp.onRest = () => {
+    if (!isOpen) { sheet.style.visibility = 'hidden'; sheet.inert = true; }
+  };
+
+  function setOpen(open, opts = {}) {
+    isOpen = open;
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    scrim.classList.toggle('live', open);
+    if (open) { sheet.style.visibility = 'visible'; sheet.inert = false; }
+    sp.to(open ? 0 : closedY, { damping: 1, response: 0.4, ...opts });
+  }
+
+  burger.addEventListener('click', () => setOpen(!isOpen));
+  scrim.addEventListener('click', () => setOpen(false));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen) { setOpen(false); burger.focus(); } });
+  sheet.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+
+  // drag up to dismiss — grab it mid-flight too
+  const vt = velocityTracker();
+  let drag = null, suppressClick = false;
+  sheet.addEventListener('pointerdown', e => {
+    drag = { id: e.pointerId, y0: e.clientY, v0: sp.value, live: false };
+    vt.reset(); vt.add(0, e.clientY, e.timeStamp);
+  });
+  sheet.addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dy = e.clientY - drag.y0;
+    if (!drag.live) {
+      if (Math.abs(dy) < 10) return;           // hysteresis
+      drag.live = true; drag.y0 = e.clientY; drag.v0 = sp.value;
+      sp.stop(); sheet.setPointerCapture(e.pointerId);
+    }
+    vt.add(0, e.clientY, e.timeStamp);
+    let y = drag.v0 + (e.clientY - drag.y0);
+    if (y > 0) y = rubberband(y, 200);         // resist pulling past open
+    sp.jump(y);
+  });
+  const end = e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const wasLive = drag.live; drag = null;
+    if (!wasLive) return;
+    suppressClick = true;
+    const v = vt.get(e.timeStamp).y;
+    const landing = sp.value + project(v);
+    const open = landing > closedY / 2;
+    setOpen(open, { velocity: v, damping: 0.8, response: 0.3 });
+  };
+  sheet.addEventListener('pointerup', end);
+  sheet.addEventListener('pointercancel', end);
+  sheet.addEventListener('click', e => {
+    if (suppressClick) { e.preventDefault(); e.stopPropagation(); suppressClick = false; }
+  }, true);
+
+  window.addEventListener('resize', () => {
+    closedY = -(sheet.offsetHeight + 60);
+    if (innerWidth > 960 && isOpen) { isOpen = false; scrim.classList.remove('live'); burger.setAttribute('aria-expanded', 'false'); }
+    if (!isOpen) sp.jump(closedY, true);
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO TILE — throw it; X and Y are independent springs
+═══════════════════════════════════════════════════════════════ */
+(() => {
+  const tile = document.getElementById('tile');
+  const shackle = document.getElementById('shackle');
+  const DIM = 320;
+  const st = { x: 0, y: 0, s: 1 };
+  const render = () => {
+    tile.style.transform = `translate3d(${st.x}px,${st.y}px,0) rotate(${st.x / 22}deg) scale(${st.s})`;
+    const lift = Math.min(9, Math.hypot(st.x, st.y) / 9);   // shackle hints "unlocking" as you pull
+    shackle.style.transform = `translateY(${-lift}px)`;
+  };
+  const sx = new Spring(0, v => { st.x = v; render(); });
+  const sy = new Spring(0, v => { st.y = v; render(); });
+  const ss = new Spring(1, v => { st.s = v; render(); }, { eps: 0.001 });
+
+  // inverse rubberband, so grabbing mid-flight doesn't jump
+  const unrubber = (y, d = DIM, c = 0.55) => {
+    const a = Math.min(Math.abs(y), d * 0.98);
+    return Math.sign(y) * (a * d) / (c * (d - a));
+  };
+
+  const vt = velocityTracker();
+  let drag = null;
+  tile.addEventListener('pointerdown', e => {
+    if (e.button !== 0) return;
+    tile.setPointerCapture(e.pointerId);
+    sx.stop(); sy.stop();
+    // respect where it was grabbed (and where it currently is)
+    drag = { id: e.pointerId, ox: e.clientX - unrubber(sx.value), oy: e.clientY - unrubber(sy.value) };
+    vt.reset(); vt.add(sx.value, sy.value, e.timeStamp);
+    tile.classList.add('held');
+    ss.to(1.05, { damping: 1, response: 0.25 });    // instant feedback on press
+  });
+  tile.addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const x = rubberband(e.clientX - drag.ox, DIM);
+    const y = rubberband(e.clientY - drag.oy, DIM);
+    sx.jump(x); sy.jump(y);
+    vt.add(x, y, e.timeStamp);
+  });
+  const release = e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    drag = null;
+    tile.classList.remove('held');
+    const v = vt.get(e.timeStamp);
+    const thrown = Math.hypot(v.x, v.y) > 200;
+    // velocity hand-off: no seam between the drag and the spring home
+    const opts = { damping: thrown ? 0.6 : 0.8, response: 0.5 };
+    sx.to(0, { ...opts, velocity: v.x });
+    sy.to(0, { ...opts, velocity: v.y });
+    ss.to(1, { damping: 0.8, response: 0.3 });
+  };
+  tile.addEventListener('pointerup', release);
+  tile.addEventListener('pointercancel', release);
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   CAROUSEL — 1:1 drag, projection, rubber-band, velocity hand-off
+═══════════════════════════════════════════════════════════════ */
+(() => {
+  const vp = document.getElementById('cv-viewport');
+  const track = document.getElementById('cv-track');
+  const slides = [...track.children];
+  const N = slides.length;
+  const dotsWrap = document.getElementById('dots');
+  const pill = document.getElementById('dot-pill');
+  const count = document.getElementById('cv-count');
+  const prevBtn = document.getElementById('cv-prev');
+  const nextBtn = document.getElementById('cv-next');
+  const DOT_STEP = 18;
+
+  let step = 0, index = 0;
+  const measure = () => { step = slides[1].offsetLeft - slides[0].offsetLeft; };
+  measure();
+
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.className = 'dot';
+    b.setAttribute('aria-label', `Go to slide ${i + 1}`);
+    b.addEventListener('click', () => { userTook(); goTo(i); });
+    dotsWrap.appendChild(b);
+  });
+  const dots = [...dotsWrap.querySelectorAll('.dot')];
+
+  // indicator tracks the spring continuously — feedback during the gesture
+  const sp = new Spring(0, x => {
+    track.style.transform = `translate3d(${x}px,0,0)`;
+    const p = clamp(-x / step, -0.4, N - 0.6);
+    pill.style.transform = `translateX(${p * DOT_STEP}px)`;
+  }, { eps: 0.2 });
+
+  function label() {
+    count.textContent = `${index + 1} of ${N}`;
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === N - 1;
+    dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+    slides.forEach((s, i) => s.setAttribute('aria-hidden', i === index ? 'false' : 'true'));
+  }
+  function goTo(i, opts = {}) {
+    index = clamp(i, 0, N - 1);
+    sp.to(-index * step, { damping: 1, response: 0.45, ...opts });
+    label();
+  }
+  label();
+
+  prevBtn.addEventListener('click', () => { userTook(); goTo(index - 1); });
+  nextBtn.addEventListener('click', () => { userTook(); goTo(index + 1); });
+  vp.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { userTook(); goTo(index + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft')  { userTook(); goTo(index - 1); e.preventDefault(); }
+  });
+
+  const bound = x => {
+    const min = -(N - 1) * step;
+    if (x > 0) return rubberband(x, step);
+    if (x < min) return min - rubberband(min - x, step);
+    return x;
+  };
+
+  const vt = velocityTracker();
+  let drag = null;
+  vp.addEventListener('pointerdown', e => {
+    if (e.button !== 0) return;
+    userTook();
+    sp.stop();                         // catch the track mid-flight
+    drag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, v0: sp.value, axis: null, resume: sp.target };
+    vt.reset(); vt.add(e.clientX, 0, e.timeStamp);
+  });
+  vp.addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    if (!drag.axis) {
+      const dx = e.clientX - drag.x0, dy = e.clientY - drag.y0;
+      if (Math.hypot(dx, dy) < 10) return;        // hysteresis before committing
+      drag.axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+      if (drag.axis === 'y') return finish(e);    // let the page scroll
+      vp.setPointerCapture(e.pointerId);
+      vp.classList.add('dragging');
+      drag.x0 = e.clientX; drag.v0 = sp.value;    // start 1:1 from here, no jump
+    }
+    if (drag.axis !== 'x') return;
+    vt.add(e.clientX, 0, e.timeStamp);
+    sp.jump(bound(drag.v0 + e.clientX - drag.x0));
+  });
+
+  function finish(e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    const d = drag; drag = null;
+    vp.classList.remove('dragging');
+    if (d.axis !== 'x') {                 // a tap or vertical scroll: carry on where it was going
+      sp.to(d.resume);
+      return;
+    }
+    const v = vt.get(e.timeStamp).x;
+    const start = Math.round(-d.v0 / step);
+    // project where the flick is heading, then pick the nearest page (one page per flick)
+    const target = clamp(Math.round(-(sp.value + project(v)) / step), start - 1, start + 1);
+    const flicked = Math.abs(v) > 300;
+    goTo(target, { velocity: v, damping: flicked ? 0.85 : 1, response: 0.4 });
+  }
+  window.addEventListener('pointerup', finish);
+  window.addEventListener('pointercancel', finish);
+  vp.addEventListener('dragstart', e => e.preventDefault());
+
+  window.addEventListener('resize', () => { measure(); sp.jump(-index * step); });
+
+  /* Gentle auto-advance — stops for good once the visitor takes over (Agency) */
+  let auto = null, hovered = false, inView = false;
+  function userTook() { clearInterval(auto); auto = null; }
+  if (!reduceMotion.matches) {
+    auto = setInterval(() => {
+      if (hovered || !inView || document.hidden || drag) return;
+      goTo((index + 1) % N);
+    }, 6500);
+    vp.addEventListener('pointerenter', () => hovered = true);
+    vp.addEventListener('pointerleave', () => hovered = false);
+    new IntersectionObserver(([e]) => { inView = e.isIntersecting; }, { threshold: 0.6 }).observe(vp);
+  }
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   SERVICE CARDS — follow the pointer on a critically damped spring
+═══════════════════════════════════════════════════════════════ */
+if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  document.querySelectorAll('.card').forEach(card => {
+    const pos = { x: 0, y: 0 };
+    const draw = () => { card.style.translate = `${pos.x}px ${pos.y}px`; };
+    const sx = new Spring(0, v => { pos.x = v; draw(); }, { eps: 0.01 });
+    const sy = new Spring(0, v => { pos.y = v; draw(); }, { eps: 0.01 });
+    const opts = { damping: 1, response: 0.35 };
+    card.addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse') return;
+      const r = card.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width, ny = (e.clientY - r.top) / r.height;
+      card.style.setProperty('--mx', `${nx * 100}%`);
+      card.style.setProperty('--my', `${ny * 100}%`);
+      sx.to((nx - 0.5) * 8, opts);
+      sy.to((ny - 0.5) * 8 - 3, opts);       // slight lift toward the pointer
+    });
+    card.addEventListener('pointerleave', () => { sx.to(0, opts); sy.to(0, opts); });
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   REVEAL ON SCROLL
+═══════════════════════════════════════════════════════════════ */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
